@@ -10,20 +10,19 @@ using namespace std;
 
 class Solution{
 public:
-    void solve(stack<int>& St, int X, int bottom, stack<int>& ans){
-        if(bottom == 0){
-            ans.push(X);
-            return;
-        } 
-        bottom--;
-        int temp = St.top();
-        St.pop();
-        solve(St, X, bottom, ans);
-        ans.push(temp);
-    }
-    stack<int> insertAtBottom(stack<int> St,int X){
-        stack<int> ans;
-        solve(St, X, St.size(), ans);
+    stack<int> insertAtBottom(stack<int> st,int x){
+        stack<int> s, ans;
+        while(!st.empty()){
+            int top = st.top();
+            st.pop();
+            s.push(top);
+        }
+        ans.push(x);
+        while(!s.empty()){
+            int top = s.top();
+            s.pop();
+            ans.push(top);
+        }
         return ans;
     }
 };
